@@ -2,7 +2,7 @@
 SNAKE SCRIPT
 --------------------------
 Javascript snake game v1.0
-By: Rory Hemmings
+By: Rory Hemmings 
 --------------------------
  */
 
