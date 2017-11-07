@@ -46,7 +46,7 @@ function draw() {
   snake.update();
   if (snake.eat(food.x, food.y)) {
     food.reset();
-    snake.length++;
+    snake.addHead();
   }
   snake.render();
 

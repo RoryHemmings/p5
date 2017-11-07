@@ -2,7 +2,7 @@
 SNAKE SCRIPT
 --------------------------
 Javascript snake game v1.0
-By: Rory Hemmings 
+By: Rory Hemmings
 --------------------------
  */
 
@@ -51,7 +51,7 @@ function Snake(spawnX, spawnY) {
 
   //increases length of snake
   this.addHead = function() {
-
+    this.length++;
   };
 
   //kills (resets) snake
