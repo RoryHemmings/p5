@@ -4,7 +4,7 @@ SNAKE SCRIPT
 Javascript snake game v1.0
 By: Rory Hemmings
 --------------------------
- */
+*/
 
 //construct object
 function Snake(spawnX, spawnY) {
@@ -13,14 +13,29 @@ function Snake(spawnX, spawnY) {
   this.y = spawnY;
   this.xVel = 0;
   this.yVel = 0;
-  this.length = 1;
+  this.length = 0;
   this.tail = [];
 
   //update function called once per frame
   this.update = function() {
+
+    //update the position of all the snake array objects
+    for (var i = 0; i < this.tail.length - 1; i++) {
+      this.tail[i] = this.tail[i + 1];
+    }
+    if (this.length >= 1) {
+      this.tail[this.length - 1] = createVector(this.x, this.y);
+    }
+
     //update position
     this.x += this.xVel * gridSize;
-    this.y += this.yVel* gridSize;
+    this.y += this.yVel * gridSize;
+
+    for (var i of this.tail) {
+      if(i.x === this.x && i.y === this.y) {
+        this.die();
+      }
+    }
 
     //check that snake is in play space, and if it is not than kill it
     if (this.x >= width || this.x < 0 || this.y >= height || this.y < 0) {
@@ -31,13 +46,19 @@ function Snake(spawnX, spawnY) {
   //render snanke
   this.render = function() {
     fill(255);
-    rect(this.x, this.y, gridSize, gridSize);
+
+    for (var i = 0; i < this.tail.length; i++) {
+      rect(this.tail[i].x, this.tail[i].y, gridSize-2, gridSize-2);
+    }
+
+    rect(this.x, this.y, gridSize-2, gridSize-2);
   };
 
   //check if snake is colliding with food
   this.eat = function(x, y) {
     var d = dist(this.x, this.y, x, y);
     if (d < 1) {
+      this.length++;
       return true;
     }
     return false;
@@ -49,17 +70,13 @@ function Snake(spawnX, spawnY) {
     this.yVel = y;
   };
 
-  //increases length of snake
-  this.addHead = function() {
-    this.length++;
-  };
-
   //kills (resets) snake
   this.die = function() {
-    this.length = 1;
     this.x = spawnX;
     this.y = spawnY;
     this.xVel = 0;
     this.yVel = 0;
+    this.length = 0;
+    this.tail = [];
   };
 }

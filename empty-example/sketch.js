@@ -5,7 +5,7 @@ MAIN SCRIPT
 Javascript snake game v1.0
 By: Rory Hemmings
 --------------------------
- */
+*/
 
 //declare all variables
 var width;
@@ -22,11 +22,11 @@ var scoreCounter;
 
 //setup function
 function setup() {
-  width = 900;
-  height = 900;
+  width = windowWidth-10;
+  height = windowHeight-10;
   createCanvas(width, height);
 
-  frameRate(10);
+  frameRate(15);
 
   //initialize objects
   snake = new Snake(gridSize*2, gridSize*2);
@@ -46,7 +46,6 @@ function draw() {
   snake.update();
   if (snake.eat(food.x, food.y)) {
     food.reset();
-    snake.addHead();
   }
   snake.render();
 
@@ -55,7 +54,7 @@ function draw() {
 
   //update score counter
   fill(255);
-  scoreCounter = snake.length;
+  scoreCounter = snake.length + 1;
   text("Length: " + scoreCounter, width - 120, gridSize*2);
 }
 

@@ -24,7 +24,7 @@ function Food() {
   //resets foods position
   this.reset = function() {
     //makes sure that food is generated on a valid grid space
-    this.x = floor(random(0, (width-gridSize)/gridSize)) * gridSize;
-    this.y = floor(random(0, (height-gridSize)/gridSize)) * gridSize;
+    this.x = floor(random(20, (width-gridSize-20)/gridSize)) * gridSize;
+    this.y = floor(random(20, (height-gridSize-20)/gridSize)) * gridSize;
   }
 }
